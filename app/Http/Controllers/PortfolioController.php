@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Portfolio;
+use Excel;
+use App\Imports\PortfolioImport;
+
 
 class PortfolioController extends Controller
 {
@@ -41,5 +44,16 @@ class PortfolioController extends Controller
         // $request->file('thumbnail')->store('thumbnail');
         Portfolio::create($data);
         return redirect()->to('/portfolio/create');
+    }
+
+    function import()
+    {
+        return view('import');
+    }
+
+    function import_store(Request $request)
+    {
+        Excel::import(new PortfolioImport, $request->file);
+        return 'import success';
     }
 }

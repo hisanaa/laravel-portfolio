@@ -14,4 +14,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/portfolio/create', 'PortfolioController@create');
+Route::get('/portfolio/import', 'PortfolioController@import');
+Route::post('/portfolio/import', 'PortfolioController@import_store');
 Route::post('/portfolio', 'PortfolioController@store');
